@@ -136,11 +136,9 @@ class NeuralNetSnake extends Snake {
     int len = tail.size() + 1;
     
     if(len < CUTOFF) {
-      fitness = floor(lifeTime * lifeTime * pow(2, len));
+      fitness = (long)(lifeTime * lifeTime * pow(2, len));
     } else {
-      fitness = lifeTime * lifeTime;
-      fitness *= pow(2, 10);
-      fitness *= (len - (CUTOFF - 1));
+      fitness = (long)((lifeTime * lifeTime) * pow(2, 10)) * (len - (CUTOFF - 1));
     }
     
     if(leftToLive <= 0) {
