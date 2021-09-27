@@ -1,4 +1,5 @@
 static final int INITIAL_TTL = 200;
+static final int CUTOFF = 10;
 
 class NeuralNetSnake extends Snake {
   NeuralNetwork neuralNet;
@@ -107,7 +108,7 @@ class NeuralNetSnake extends Snake {
   void eat() {
     leftToLive += 100;
     super.eat();
-    if(tail.size() + 1 >= 10) {
+    if(tail.size() + 1 < CUTOFF) {
       for(int i = 0; i < 3; i++) {
         PVector last = tail.get(tail.size() - 1);
         tail.add(new PVector(last.x, last.y));
@@ -132,7 +133,6 @@ class NeuralNetSnake extends Snake {
   }
   
   void computeFitness() {
-    final int CUTOFF = 10;
     int len = tail.size() + 1;
     
     if(len < CUTOFF) {
